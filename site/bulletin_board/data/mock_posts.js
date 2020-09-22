@@ -11,13 +11,13 @@ var posts = {};
  *   body: string
  * }
  */
-posts.retrieve = (callback) => {
+posts.retrieve = (id, callback) => {
   var post = {
     title: "Lorem ipsum dolor sit amet.",
     author: "swright",
     date: "September 20, 2020",
     liked: true,
-    url: "/posts/view",
+    url: "/posts/1",
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   };
 
@@ -42,7 +42,7 @@ posts.recent = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: true,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     },
     {
@@ -50,7 +50,7 @@ posts.recent = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: false,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     },
     {
@@ -58,7 +58,7 @@ posts.recent = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: false,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     }
   ];
@@ -84,7 +84,7 @@ posts.trending = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: true,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     },
     {
@@ -92,7 +92,7 @@ posts.trending = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: false,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     },
     {
@@ -100,7 +100,7 @@ posts.trending = (callback) => {
       author: "swright",
       date: "September 20, 2020",
       liked: false,
-      url: "/posts/view",
+      url: "/posts/1",
       excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
     }
   ];
@@ -114,14 +114,14 @@ posts.trending = (callback) => {
  * The callback takes a single parameter:
  * {
  *   success: boolean,
- *   redirect_uri: string,
+ *   post_id: string,
  *   error_message: string
  * }
- * redirect_uri will always be defined when success is true.
+ * post_id will always be defined when success is true.
  * error_message will always be defined when success is false.
- * redirect_uri must only be used when success is true.
+ * post_id must only be used when success is true.
  */
-posts.create = (post, callback) => {
+posts.create = (post, user, callback) => {
   var success = false;
   var error_message = "";
 
@@ -135,7 +135,7 @@ posts.create = (post, callback) => {
 
   var result = {
     success: success,
-    redirect_uri: "/posts/view",
+    post_id: "1",
     error_message: error_message
   };
   callback(result);

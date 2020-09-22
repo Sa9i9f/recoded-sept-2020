@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var datasource = require('../data/mock_posts.js');
+var datasource = require('../data/posts.js');
 
 /** EJS: A list of the recent posts on the Bulletin Board. */
 router.get('/recent', (req, res, next) => {
@@ -23,8 +23,8 @@ router.get('/create', (req, res, next) => {
 });
 
 /** EJS: The detailed view of a single post. */
-router.get('/view', (req, res, next) => {
-  datasource.retrieve((post) => {
+router.get('/:id', (req, res, next) => {
+  datasource.retrieve(req.params['id'], (post) => {
     res.render('view_post', { title: 'Lorem ipsum dolor sit amet.', post: post });
   });
 });
@@ -46,10 +46,15 @@ router.get('/view', (req, res, next) => {
 router.post('/', function(req, res, next) {
   var post = req.body;
 
-  datasource.create(post, function(result) {
+  datasource.create(post, req.user, (result) => {
     if (!result.success) {
       res.status(400);
     }
+    var result = {
+      success: result.success,
+      redirect_uri: "/posts/" + result.post_id,
+      error_message: result.error_message
+    };
     res.send(result);
   });
 });
@@ -61,10 +66,10 @@ router.post('/', function(req, res, next) {
  *   upvoted: boolean
  * }
  */
-router.post('/upvotes/', function(req, res, next) {
+router.post('/upvotes/', (req, res, next) => {
   var vote = req.body;
 
-  posts_data.upvote(vote, function() {
+  posts_data.upvote(vote, () => {
     res.send();
   });
 });
