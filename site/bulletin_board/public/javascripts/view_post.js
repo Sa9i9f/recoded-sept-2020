@@ -11,7 +11,8 @@ thumbs_up_on.on("click", function(event){
   thumbs_up_off.show();
   thumbs_up_on.hide();
 
-  upvote(false);
+  var id = event.originalEvent.currentTarget.getAttribute("data-postid");
+  upvote(id, false);
 
   event.preventDefault();
 });
@@ -24,7 +25,8 @@ thumbs_up_off.on("click", function(event){
   thumbs_up_off.hide();
   thumbs_up_on.show();
 
-  upvote(true);
+  var id = event.originalEvent.currentTarget.getAttribute("data-postid");
+  upvote(id, true);
 
   event.preventDefault();
 });

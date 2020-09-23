@@ -3,6 +3,7 @@ var posts = {};
 /**
  * Retrieve a single post.
  * {
+ *   id: number,
  *   title: string,
  *   author: string,
  *   date: string,
@@ -13,6 +14,7 @@ var posts = {};
  */
 posts.retrieve = (id, callback) => {
   var post = {
+    id: 1,
     title: "Lorem ipsum dolor sit amet.",
     author: "swright",
     date: "September 20, 2020",
@@ -35,7 +37,7 @@ posts.retrieve = (id, callback) => {
  *   excerpt: string
  * }
  */
-posts.recent = (callback) => {
+posts.recent = (userId, callback) => {
   var posts = [
     {
       title: "Lorem ipsum dolor sit amet.",
@@ -77,7 +79,7 @@ posts.recent = (callback) => {
  *   excerpt: string
  * }
  */
-posts.trending = (callback) => {
+posts.trending = (userId, callback) => {
   var posts = [
     {
       title: "Lorem ipsum dolor sit amet.",
@@ -147,7 +149,7 @@ posts.create = (post, user, callback) => {
  *
  * The callback takes no parameters.
  */
-posts.upvote = (vote, callback) => {
+posts.upvote = (id, user, vote, callback) => {
   callback();
 };
 

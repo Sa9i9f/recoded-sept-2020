@@ -44,19 +44,19 @@ function create_post(title, message, callback) {
 
 /**
  * Either upvotes or removes an upvote for the currently logged in user for the
- * Post being displayed.
+ * Post whose id was passed.
  *
  * There is no callback for this function - the website will assume it was
  * successful.
  */
-function upvote(state) {
+function upvote(id, state) {
   var vote = {
     upvoted: state
   };
 
   $.ajax({
       type: "POST",
-      url: "/posts/upvotes/",
+      url: "/posts/" + id + "/upvotes",
       data: JSON.stringify(vote),
       contentType: "application/json; charset=utf-8",
       dataType: "json"
